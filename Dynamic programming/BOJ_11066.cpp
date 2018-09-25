@@ -26,7 +26,6 @@ int main() {
 				for (int k = x; k < y; k++) {// ³ª´©´Â Ã©ÅÍ
 					dp[x][y] = min(dp[x][y], dp[x][k] + dp[k+1][y]+sum[y]-sum[x-1]);
 				}
-				cout << x<<' '<<y<<' '<<dp[x][y] << '\n';
 			}
 		}
 		cout<<dp[1][n]<<'\n';
