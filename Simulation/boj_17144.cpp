@@ -23,27 +23,27 @@ void print() {
 }
 void move_function(int x,int y,int dir) {
 	if (dir == -1) {//반시계방향
-				// 1. 공기청정기 위에서부터 (0, 0)까지 모든 값 떙겨주기
-				for (int i = y-1; i > 0; i--)
-				{
-					board[i][0] = board[i - 1][0];
-				}
-				// 2. 가장 윗줄 땡겨주기
-				for (int i = 0; i < C - 1; i++)
-				{
-					board[0][i] = board[0][i + 1];
-				}
-				// 3. 반대편 세로라인 땡겨주기
-				for (int i = 1; i <= y; i++)
-				{
-					board[i - 1][C - 1] = board[i][C - 1];
-				}
-				// 4. 공기청정기 라인 땡겨주기
-				for (int i = C - 1; i > 1; i--)
-				{
-					board[y][i] = board[y][i - 1];
-				}
-				board[y][1] = 0;
+		// 1. y-1부터 0까지 땡긴다  y축 이동 ↓
+		for (int i = y-1; i > 0; i--)
+		{
+			board[i][0] = board[i - 1][0];
+		}
+		// 2. 0부터 c-1까지 땡긴다. x축 이동 <-
+		for (int i = 0; i < C - 1; i++)
+		{
+			board[0][i] = board[0][i + 1];
+		}
+		// 3. 1부터 y까지 땡긴다 y축 이동 ↑
+		for (int i = 1; i <= y; i++)
+		{
+			board[i - 1][C - 1] = board[i][C - 1];
+		}
+		// 4. C-1부터 1까지 땡긴다. x축 이동 ->
+		for (int i = C - 1; i > 1; i--)
+		{
+			board[y][i] = board[y][i - 1];
+		}
+		board[y][1] = 0;
 	}
 	else {
 		for (int i = y + 1; i < R - 1; i++)
@@ -84,8 +84,8 @@ void dust_bfs() {
 		for (int i = 0; i < R; i++) {
 			for (int j = 0; j < C; j++) {
 				if (board[i][j] != 0 && board[i][j] != -1) {
-					int cnt = 0;
-					int value = board[i][j] / 5;
+					int cnt = 0;		
+					int value = board[i][j] / 5;	//현재 좌표에 미세먼지 양에 남는 양들
 					for (int k = 0; k < 4; k++) {
 						int n_x = j + m_xy[k][0];
 						int n_y = i + m_xy[k][1];
@@ -94,11 +94,11 @@ void dust_bfs() {
 							cnt++;
 						}
 					}
-					tmp_board[i][j] = tmp_board[i][j] - (cnt*value);
+					tmp_board[i][j] = tmp_board[i][j] - (cnt*value);	//현재 좌표에 최종 남는 미세먼지 양
 				}
 			}
 		}
-
+		//다시 맵에 복사
 		for (int i = 0; i < R; i++) {
 			for (int j = 0; j < C; j++) {
 				board[i][j] = tmp_board[i][j];
