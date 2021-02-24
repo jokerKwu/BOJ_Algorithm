@@ -3,7 +3,7 @@
 #include<algorithm>
 using namespace std;
 #define MAX 300002
-vector<pair<int, int>> arr;	//°ª, ÀÎµ¦½º
+vector<pair<int, int>> arr;	//Â°Âª, Ã€ÃŽÂµÂ¦Â½Âº
 int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
@@ -20,12 +20,12 @@ int main() {
 	bool succ = true;
 	for (int i = 0;i < N;i++) {
 		int index = arr[i].second;
-		//Â¦¼ö
+		//Ã‚Â¦Â¼Ã¶
 		if (i % 2 == 0&& index % 2 !=0) {
 			succ = false;
 			break;
 		}
-		//È¦¼ö
+		//ÃˆÂ¦Â¼Ã¶
 		else if (i % 2 == 1 && index % 2 != 1) {
 			succ = false;
 			break;
@@ -34,6 +34,5 @@ int main() {
 	
 	if (succ) cout << "YES\n";
 	else cout << "NO\n";
-
 	return 0;
 }
